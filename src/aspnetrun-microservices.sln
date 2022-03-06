@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31729.503
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{49C8A844-5979-4CAB-A92C-B4A65EB39523}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{FE814E73-ABDF-43FE-AFE0-E2F91DF75F34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{172249C5-EF78-43DB-B004-8DB353AC6289}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.API", "Services\Catalog\Catalog.API\Catalog.API.csproj", "{172249C5-EF78-43DB-B004-8DB353AC6289}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D08A6CAA-3C0A-4AAD-8BA9-93802809CEE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogAPITest", "CatalogAPITest\CatalogAPITest.csproj", "{598F2E87-BCDF-48B3-9A23-A21B71CB9B4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CatalogControllerTest", "CatalogControllerTest", "{583A9E03-A276-4E8B-AAF4-79F5D169D0AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +25,10 @@ Global
 		{172249C5-EF78-43DB-B004-8DB353AC6289}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{172249C5-EF78-43DB-B004-8DB353AC6289}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{172249C5-EF78-43DB-B004-8DB353AC6289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{598F2E87-BCDF-48B3-9A23-A21B71CB9B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{598F2E87-BCDF-48B3-9A23-A21B71CB9B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{598F2E87-BCDF-48B3-9A23-A21B71CB9B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{598F2E87-BCDF-48B3-9A23-A21B71CB9B4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -26,6 +36,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FE814E73-ABDF-43FE-AFE0-E2F91DF75F34} = {49C8A844-5979-4CAB-A92C-B4A65EB39523}
 		{172249C5-EF78-43DB-B004-8DB353AC6289} = {FE814E73-ABDF-43FE-AFE0-E2F91DF75F34}
+		{598F2E87-BCDF-48B3-9A23-A21B71CB9B4B} = {D08A6CAA-3C0A-4AAD-8BA9-93802809CEE7}
+		{583A9E03-A276-4E8B-AAF4-79F5D169D0AA} = {D08A6CAA-3C0A-4AAD-8BA9-93802809CEE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CEBDD8C-E723-42AB-A8BE-076A6819C96B}
