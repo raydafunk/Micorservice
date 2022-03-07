@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Repositories
+namespace Catalog.API.Repositories.Interface
 {
     public interface IProductRespository
     {

@@ -1,5 +1,5 @@
 ﻿using Catalog.API.Entities;
-using Catalog.API.Repositories;
+using Catalog.API.Repositories.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,7 +16,8 @@ namespace Catalog.API.Controllers
         private readonly IProductRespository _respository;
         private readonly ILogger<CatalogController> _logger;
 
-        public CatalogController(IProductRespository respository, ILogger<CatalogController> logger)
+        public CatalogController(IProductRespository respository, 
+                ILogger<CatalogController> logger)
         {
             _respository = respository ?? throw new ArgumentNullException(nameof(respository));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
