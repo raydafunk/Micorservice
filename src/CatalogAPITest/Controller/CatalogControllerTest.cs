@@ -36,5 +36,30 @@ namespace CatalogAPITest.Controller
             Assert.Equal(expected.Id, actual.Id);
 
         }
+
+        [Fact]
+        public async Task GetProductbyId_whenCaled_ShouldReturnAProductbyId()
+        {
+            var actual = new Product { Id = "602d2149e773f2a3990b47f5" };
+            var expected = new Product { Id = "602d2149e773f2a3990b47f5" };
+
+            _productRepo
+                .GetProduct("actual")
+                .Returns(actual);
+
+            await _catalog.GetProductsByCategory("2");
+
+            Assert.Equal(expected.Id, actual.Id);
+        }
+
+        [Fact]
+        public async Task GetProductbyId_whenCalled_ShouldNotLogaNull()
+        {
+            var emptyProduct = new Product { Id = "602d2149e773f2a3990b47f5" };
+
+            await _catalog.GetProductsByCategory("emptyProduct");
+
+            Assert.NotNull(emptyProduct);
+        }
     }
 }

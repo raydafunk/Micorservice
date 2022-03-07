@@ -38,6 +38,7 @@ namespace Catalog.API.Controllers
         
         public async Task<ActionResult<Product>> GetProductbyId(string id)
         {
+            
             var product = await _respository.GetProduct(id);
             if (product == null)
             {
