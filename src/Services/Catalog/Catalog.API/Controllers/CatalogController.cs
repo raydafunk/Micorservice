@@ -38,14 +38,22 @@ namespace Catalog.API.Controllers
         
         public async Task<ActionResult<Product>> GetProductbyId(string id)
         {
-            
-            var product = await _respository.GetProduct(id);
-            if (product == null)
+            try
             {
-                _logger.LogError($"Product with Id: {id}, not found");
-                return NotFound();
+                var product = await _respository.GetProduct(id);
+                if (product == null)
+                {
+                    _logger.LogError($"Product with Id: {id}, not found");
+                    return NotFound();
+                }
+                 return Ok(product);
             }
-            return Ok(product);
+            catch (Exception ex)
+            {
+                _logger.LogError($"GetProductbyId: Product with Id: {id}. Exception : {ex.Message}");
+            }
+            return BadRequest();
+           
         }
 
         [Route("[action]/{category}", Name = "GetProductByCategory")]
