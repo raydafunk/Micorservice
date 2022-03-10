@@ -43,7 +43,7 @@ namespace Catalog.API.Controllers
                 var product = await _respository.GetProduct(id);
                 if (product == null)
                 {
-                    _logger.LogError($"Product with Id: {id}, not found");
+                    _logger.LogError($"GetProductbyId with Id: {id}, not found");
                     return NotFound();
                 }
                  return Ok(product);
