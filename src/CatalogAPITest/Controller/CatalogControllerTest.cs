@@ -30,7 +30,7 @@ namespace CatalogAPITest.Controller
         [Fact]
         public async Task GetProducts_Whencalled_shouldReturnEqualProductItems()
         {
-            var actual = new Product { Id = "602d2149e773f2a3990b47f5", Name = "IPhone X" ,Category = "Smart Phone",Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,",Price = 950.00M };
+            var actual = new Product { Id = "602d2149e773f2a3990b47f5", Name = "IPhone X", Category = "Smart Phone", Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,", Price = 950.00M };
             var expected = new Product { Id = "602d2149e773f2a3990b47f5", Name = "IPhone X", Category = "Smart Phone", Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut,", Price = 950.00M };
 
             await _catalog.GetProducts();
@@ -42,7 +42,7 @@ namespace CatalogAPITest.Controller
         [Fact]
         public async Task GetProductsByCategory_whenCaled_ShouldReturnACategory()
         {
-            var actual = new Product {  Category = "White Appliances" };
+            var actual = new Product { Category = "White Appliances" };
             var expected = new Product { Category = "White Appliances" };
 
             _productRepo
@@ -74,7 +74,7 @@ namespace CatalogAPITest.Controller
                 .Returns(productId);
             await _catalog.GetProductbyId("602d2149e773f2a3990b47f7");
 
-           
+
         }
 
         [Fact]
@@ -91,11 +91,19 @@ namespace CatalogAPITest.Controller
         public async Task CreateProduct_WhenCalled_ShoudReturnStatusCodeWithVaildObject()
         {
             var response = GetHttpResponse();
-             await _catalog.CreateProduct(MockResponse);
+            await _catalog.CreateProduct(MockResponse);
 
             response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
 
+        [Fact]
+        public async Task UpdateProduct_WhenCalled_ShouldNotHaveTheSameProductObject()
+        {
+            var product = UpdatedMockResponse;
+
+            await _catalog.UpdateProduct(MockResponse);
+            product.Should().NotBe(MockResponse);
+        }
         private Product MockResponse
         {
             get
@@ -111,7 +119,26 @@ namespace CatalogAPITest.Controller
                     Category = "Smart Phone"
                 };
             }
+
         }
+
+        private Product UpdatedMockResponse
+        {
+            get
+            {
+                return new Product
+                {
+                    Id = "602d2149e773f2a3990b4760",
+                    Name = "Samsanug 21",
+                    Summary = "this phone",
+                    Description = "some dest",
+                    ImageFile = "ImageFile",
+                    Price = 950.00M,
+                    Category = "Smart Phone"
+                };
+            }
+        }
+
         private HttpResponseMessage GetHttpResponse() => new HttpResponseMessage(HttpStatusCode.Created);
     }
 }
