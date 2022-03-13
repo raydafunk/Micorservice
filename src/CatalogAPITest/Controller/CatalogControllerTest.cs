@@ -74,6 +74,7 @@ namespace CatalogAPITest.Controller
                 .Returns(productId);
             await _catalog.GetProductbyId("602d2149e773f2a3990b47f7");
 
+            Assert.Null(productId);
 
         }
 
@@ -85,6 +86,23 @@ namespace CatalogAPITest.Controller
             await _catalog.GetProductsByCategory("emptyProduct");
 
             Assert.NotNull(emptyProductByCategory);
+        }
+
+        [Fact]
+
+        public async Task GeGetProductbyId_WhenRepoReturnsNoProductItem_ShouldLogErromessage()
+        {
+            var productId = new Product { Id = "602d2149e773f2a3990b47f7" };
+            var expectedLogMessages = "No Product Id found";
+            _productRepo
+                .GetProduct("602d2149e773f2a3990b47f7")
+                .Returns(productId);
+
+            _looger
+                .Received(1)
+                .LogError(expectedLogMessages);
+
+            await _catalog.GetProductbyId("602d2149e773f2a3990b47f7");
         }
 
         [Fact]
