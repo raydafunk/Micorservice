@@ -104,6 +104,18 @@ namespace CatalogAPITest.Controller
             await _catalog.UpdateProduct(MockResponse);
             product.Should().NotBe(MockResponse);
         }
+
+        [Fact]
+
+        public async Task DeleteProductById_WHenCalled_ShouldHaveTheSameProductId()
+        {
+            var actual = new Product { Id = "602d2149e773f2a3990b47f5"};
+            var expected = new Product { Id = "602d2149e773f2a3990b47f5"};
+
+            await _catalog.DeleteProductById("actual");
+
+            Assert.Equal(expected.Id, actual.Id);
+        }
         private Product MockResponse
         {
             get
