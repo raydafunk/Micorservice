@@ -86,7 +86,7 @@ namespace CatalogAPITest.Respository
         }
 
         [Fact]
-        public async Task GetProduct_WhenCalled_ShoudldContainProductName()
+        public async Task GetProductsByName_WhenCalled_ShoudldContainProductName()
         {
             var productName = new Product { Name = "IPhone X", };
 
@@ -94,7 +94,66 @@ namespace CatalogAPITest.Respository
 
             productName.Should().Be(productName);
         }
-        private Product MockResponse
+
+        [Fact]
+        public async Task CreateProduct_WhenCalled_ShouldNotBeEqualToTheSameProductObject()
+        {
+            var products = MockResponse;
+
+            var createdProducts = CreatedProductMockResponse;
+
+            await _productRespository.CreateProduct(createdProducts);
+
+            products.Should().NotBe(createdProducts);
+        }
+
+        [Fact]
+        public async Task CreateProduct_WhenCalled_ShouldNotBeNUll()
+        {
+            var products = MockResponse;
+
+            var createdProducts = CreatedProductMockResponse;
+
+            await _productRespository.CreateProduct(createdProducts);
+
+            products.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task UpdateProduct_WheCalled_ShouldNotReturnTheSameObject()
+        {
+
+            var product = MockResponse;
+
+            await _productRespository.UpdateProduct(MockResponse);
+
+            product.Should().NotBe(CreatedProductMockResponse);
+
+        }
+
+        [Fact]
+        public async Task UpdateProduct_WhenCalled_ShouldNotBeNUll()
+        {
+            var product = MockResponse;
+
+            await _productRespository.UpdateProduct(MockResponse);
+
+            product.Should().NotBeNull();
+
+        }
+
+        [Fact]
+
+        public async Task DeleteProduct_WHenCalled_ShouldHaveTheSameProduct()
+        {
+            var actual = new Product { Id = "602d2149e773f2a3990b47f5" };
+            var expected = new Product { Id = "602d2149e773f2a3990b47f5" };
+
+            await _productRespository.DeleteProduct("actual");
+
+            Assert.Equal(expected.Id, actual.Id);
+        }
+        private Product MockResponse 
         {
             get
             {
@@ -112,5 +171,22 @@ namespace CatalogAPITest.Respository
 
         }
 
+        private Product CreatedProductMockResponse
+        {
+            get
+            {
+                return new Product
+                {
+                    Id = "602d2149e773f2a3990b47f8",
+                    Name = "IPhone Sx",
+                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus",
+                    ImageFile = "product-2.png",
+                    Price = 950.00M,
+                    Category = "Smart Phone"
+                };
+            }
+
+        }
     }
 }
