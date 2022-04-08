@@ -1,3 +1,5 @@
+using Basket.API.Repositories;
+using Basket.API.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,8 +23,10 @@ namespace Basket.API
         {
             services.AddStackExchangeRedisCache(opitons =>
             {
-                opitons.Configuration = Configuration.GetValue<string>("CatcheSettings:ConnetionStrings");
+                opitons.Configuration = Configuration.GetValue<string>("CatcheSettings:ConnetionString");
             });
+
+            services.AddScoped<IBasketRepository, BasketRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
