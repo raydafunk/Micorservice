@@ -139,7 +139,7 @@ namespace CatalogAPITest.Controller
 
             Assert.Equal(expected.Id, actual.Id);
         }
-        private Product MockResponse
+        private static Product MockResponse
         {
             get
             {
@@ -157,7 +157,7 @@ namespace CatalogAPITest.Controller
 
         }
 
-        private Product UpdatedMockResponse
+        private static Product UpdatedMockResponse
         {
             get
             {
@@ -174,6 +174,6 @@ namespace CatalogAPITest.Controller
             }
         }
 
-        private HttpResponseMessage GetHttpResponse() => new HttpResponseMessage(HttpStatusCode.Created);
+        private  static HttpResponseMessage GetHttpResponse() => new(HttpStatusCode.Created);
     }
 }
