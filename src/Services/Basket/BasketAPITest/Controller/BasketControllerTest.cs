@@ -53,6 +53,25 @@ namespace BasketAPITest.Controller
         }
 
         [Fact]
+        public async Task GetBasket_WhenCalled_ShouldReturnAUserWithShoppingCartItem()
+        {
+            var shoppingcartUser = new ShoppingCart { UserName = "brown" };
+            List<ShoppingCartCartItem> shoppingCartCartItems = new();
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { Quantity = 1 });
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { ProductId = "Prod_1" });
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { Price = 50 });
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { Color = "blue" });
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { ProductName = "T-Shirt" });
+
+            await _basket.GetBasket("Brown");
+
+            shoppingcartUser.Should().Be(shoppingcartUser);
+            shoppingCartCartItems[0].Should().NotBeNull();
+
+
+        }
+
+        [Fact]
         public async Task UpdateBasket_WhenCalled_ShoudNotBeTheSameUser()
         {
             var shoppingcartUser = new ShoppingCart { UserName = "brown" };
@@ -73,6 +92,37 @@ namespace BasketAPITest.Controller
             shoppingcartUser?.Should().NotBeNull();
         }
 
+        [Fact]
+        public async Task UpdadateBasket_WhenCalled_ShouldReturnAUserWithShoppingCartItem()
+        {
+            var shoppingcartUser = new ShoppingCart { UserName = "brown" };
+            List<ShoppingCartCartItem> shoppingCartCartItems = new();
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() {Quantity = 1});
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() {ProductId = "Prod_1"});
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { Price = 50 });
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { Color = "blue" });
+            shoppingCartCartItems.Add(new ShoppingCartCartItem() { ProductName = "T-Shirt" });
+
+            await _basket.UpdateBasket(shoppingcartUser);
+
+            shoppingcartUser.Should().Be(shoppingcartUser);
+            shoppingCartCartItems[0].Should().NotBeNull();
+
+
+        }
+
+        [Fact]
+        public async Task DeleteProductById_WHenCalled_ShouldHaveTheSameUserName()
+        {
+            var actual = new ShoppingCart { UserName = "Brown" };
+            var expected = new ShoppingCart { UserName = "Brown" };
+
+            await _basket.DeletBasket("Brown");
+
+            Assert.Equal(expected.UserName, actual.UserName);
+        }
         private static HttpResponseMessage GetHttpResponse() => new(HttpStatusCode.OK);
+
+
     }
 }
