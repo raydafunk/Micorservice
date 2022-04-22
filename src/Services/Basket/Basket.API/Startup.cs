@@ -16,14 +16,14 @@ namespace Basket.API
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddStackExchangeRedisCache(opitons =>
+            services.AddStackExchangeRedisCache(options =>
             {
-                opitons.Configuration = Configuration.GetValue<string>("CatcheSettings:ConnetionString");
+                options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
             });
 
             services.AddScoped<IBasketRepository, BasketRepository>();
