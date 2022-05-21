@@ -153,7 +153,7 @@ namespace CatalogAPITest.Respository
 
             Assert.Equal(expected.Id, actual.Id);
         }
-        private Product MockResponse 
+        private static Product MockResponse 
         {
             get
             {
@@ -171,7 +171,7 @@ namespace CatalogAPITest.Respository
 
         }
 
-        private Product CreatedProductMockResponse
+        private static Product CreatedProductMockResponse
         {
             get
             {
