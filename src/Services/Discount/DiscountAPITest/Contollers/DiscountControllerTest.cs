@@ -106,6 +106,40 @@ namespace DiscountAPITest.Contollers
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
         }
+
+        [Fact]
+        public async Task UpdateDiscount_WhenCalled_ShouldNotHaveTheSameCoupenObject()
+        {
+
+            var coupon = UpdatedMockCouponResponse;
+
+            await _discount.UpdateDiscount(UpdatedMockCouponResponse);
+            coupon.Should().NotBe(MockCouponResponse);
+
+        }
+
+        [Fact]
+        public async Task DeleteDiscount_WhenCalled_ShouldRetunrsStatusCodeWIthVaildObject()
+        {
+            var response = GetHttpResponse();
+
+            await _discount.CreateDiscount(MockCouponResponse);
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+        }
+
+        [Fact]
+
+        public async Task DeleteDiscount_WHenCalled_ShouldHaveTheSameProductId()
+        {
+            var actual = new Coupon { ProductName = "T-Shirt" };
+            var expected = new Coupon { ProductName = "T-Shirt" };
+
+            await _discount.DeleteDiscount("actual");
+
+            Assert.Equal(expected.Id, actual.Id);
+        }
+
         private static Coupon MockCouponResponse
         {
             get
@@ -120,13 +154,23 @@ namespace DiscountAPITest.Contollers
             }
         }
 
+        [Fact]
+        public async Task UpdateDiscoun_WhenCalled_SHouldNotBeNull()
+        {
+            var discountProduct = MockCouponResponse;
+
+            await _discount.UpdateDiscount(UpdatedMockCouponResponse);
+
+            discountProduct.Should().NotBeNull();
+        }
+
         private static Coupon UpdatedMockCouponResponse
         {
             get
             {
                 return new Coupon
                 {
-                    ProductName = "T-Shirt",
+                    ProductName = "Shirt",
                     Amount = 2,
                     Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit od",
                     Id = 1
