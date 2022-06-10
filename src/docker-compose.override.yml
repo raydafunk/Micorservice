@@ -68,7 +68,6 @@ services:
     ports:
       - "8001:80"
 
-
   discount.api:
     container_name: discount.api
     environment:
@@ -78,4 +77,3 @@ services:
       - discountdb
     ports:
       - "8002:80"
-
