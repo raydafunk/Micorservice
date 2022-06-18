@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Basket.API\Basket.API.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="GRPC\Client\" />
+  </ItemGroup>
+
 </Project>

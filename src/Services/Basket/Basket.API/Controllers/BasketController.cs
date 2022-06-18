@@ -13,9 +13,9 @@ namespace Basket.API.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _repository;
-        private readonly DiscountGrpcServices _discountGrpcServices;
+        private readonly DiscountGrpcService _discountGrpcServices;
 
-        public BasketController(IBasketRepository repository, DiscountGrpcServices discountGrpcServices)
+        public BasketController(IBasketRepository repository, DiscountGrpcService discountGrpcServices)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
             _discountGrpcServices = discountGrpcServices ?? throw new ArgumentNullException(nameof(discountGrpcServices));
@@ -39,7 +39,7 @@ namespace Basket.API.Controllers
                 item.Price -= coupon.Amount;
             }
 
-            return Ok(await _repository.UpdateBasket(basket));
+             return Ok(await _repository.UpdateBasket(basket));
         }
 
         [HttpDelete("{userName}", Name = "DeleteBasket")]

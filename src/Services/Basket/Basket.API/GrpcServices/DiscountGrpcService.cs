@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace Basket.API.GrpcServices
 {
-    public class DiscountGrpcServices
+    public class DiscountGrpcService
     {
         private readonly DiscountProtoService.DiscountProtoServiceClient _discountProtoServiceClient;
 
-        public DiscountGrpcServices(DiscountProtoService.DiscountProtoServiceClient discountProtoServiceClient)
+        public DiscountGrpcService(DiscountProtoService.DiscountProtoServiceClient discountProtoServiceClient)
         {
                _discountProtoServiceClient = discountProtoServiceClient ?? throw new ArgumentNullException(nameof(discountProtoServiceClient));
         }
