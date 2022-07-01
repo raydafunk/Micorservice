@@ -19,4 +19,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ordering.Application\Ordering.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Vaildation\CheckoutOrderTest\" />
+    <Folder Include="Vaildation\UpdateOrderTest\" />
+  </ItemGroup>
+
 </Project>
