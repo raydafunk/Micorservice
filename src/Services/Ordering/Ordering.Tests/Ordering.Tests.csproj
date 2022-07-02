@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Feature\" />
     <Folder Include="Vaildation\CheckoutOrderTest\" />
     <Folder Include="Vaildation\UpdateOrderTest\" />
   </ItemGroup>
