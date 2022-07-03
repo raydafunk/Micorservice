@@ -41,9 +41,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Domain", "Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Application", "Services\Ordering\Ordering.Application\Ordering.Application.csproj", "{14671FFD-132E-4026-84A0-AD580FB727BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Tests", "Services\Ordering\Ordering.Tests\Ordering.Tests.csproj", "{DEDE8DC5-C535-49BC-88AE-4B9168EFFF78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderingApplication.Tests", "Services\Ordering\Ordering.Tests\OrderingApplication.Tests.csproj", "{DEDE8DC5-C535-49BC-88AE-4B9168EFFF78}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Infrastructure", "Services\Ordering\Ordering.Infrastructure\Ordering.Infrastructure.csproj", "{A207956A-E1D3-4335-B249-8910F4093662}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering.API.Test", "Ordering.API.Test", "{A6A4EBF5-8B6C-4A7E-9254-9C58FC24A091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingAPITest", "Services\Ordering\Ordering.API.Test\OrderingAPITest\OrderingAPITest.csproj", "{612051C4-864C-4ED9-B645-6500EBD44BAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controller", "Controller", "{408AF9DB-5BC4-47B8-8F02-1AD8A604C2D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +109,10 @@ Global
 		{A207956A-E1D3-4335-B249-8910F4093662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A207956A-E1D3-4335-B249-8910F4093662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A207956A-E1D3-4335-B249-8910F4093662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{612051C4-864C-4ED9-B645-6500EBD44BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{612051C4-864C-4ED9-B645-6500EBD44BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{612051C4-864C-4ED9-B645-6500EBD44BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{612051C4-864C-4ED9-B645-6500EBD44BAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -127,6 +137,9 @@ Global
 		{14671FFD-132E-4026-84A0-AD580FB727BD} = {C253380C-BF7F-4727-95EB-1624D13E52D5}
 		{DEDE8DC5-C535-49BC-88AE-4B9168EFFF78} = {C253380C-BF7F-4727-95EB-1624D13E52D5}
 		{A207956A-E1D3-4335-B249-8910F4093662} = {C253380C-BF7F-4727-95EB-1624D13E52D5}
+		{A6A4EBF5-8B6C-4A7E-9254-9C58FC24A091} = {C253380C-BF7F-4727-95EB-1624D13E52D5}
+		{612051C4-864C-4ED9-B645-6500EBD44BAA} = {A6A4EBF5-8B6C-4A7E-9254-9C58FC24A091}
+		{408AF9DB-5BC4-47B8-8F02-1AD8A604C2D6} = {A6A4EBF5-8B6C-4A7E-9254-9C58FC24A091}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1CEBDD8C-E723-42AB-A8BE-076A6819C96B}
