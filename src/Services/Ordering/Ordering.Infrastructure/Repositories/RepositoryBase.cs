@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ordering.Application.Contracts.Persistence;
 using Ordering.Domain.Common;
+using Ordering.Domain.Enities;
 using Ordering.Infrastructure.Presistance;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Ordering.Infrastructure.Repositories
 {
     public class RepositoryBase<T> : IAsyncRepository<T> where T : EntityBase
     {
-        private readonly OrderContext _dbContext;
+        protected readonly OrderContext _dbContext;
 
         public RepositoryBase(OrderContext dbContext)
         {
@@ -26,8 +27,25 @@ namespace Ordering.Infrastructure.Repositories
         }
         public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate)
         {
-          return await _dbContext.Set<T>().Where(predicate).ToListAsync();
+            return await _dbContext.Set<T>().Where(predicate).ToListAsync();
         }
+
+        public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeString = null, bool disableTracking = true)
+        {
+            IQueryable<T> query = _dbContext.Set<T>();
+            if (disableTracking) query = query.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(includeString)) query = query.Include(includeString);
+
+            if (predicate != null) query = (IQueryable<T>)query.Where(predicate);
+
+            if (orderBy != null)
+                return await orderBy(query).ToListAsync();
+            return await query.ToListAsync();
+
+        }
+
+
         public async Task<IReadOnlyList<T>> GetAsync(Func<T, bool> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, List<Expression<Func<T, object>>> includes = null, bool disableTracking = true)
         {
             IQueryable<T> query = _dbContext.Set<T>();
@@ -36,36 +54,33 @@ namespace Ordering.Infrastructure.Repositories
             if (includes != null) query = includes.Aggregate(query, (current, include) => current.Include(include));
 
             if (predicate != null) query = (IQueryable<T>)query.Where(predicate);
-             
+
             if (orderBy != null)
                 return await orderBy(query).ToListAsync();
             return await query.ToListAsync();
         }
 
-        public Task<T> AddAsync(T entity)
+
+        public virtual async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Set<T>().FindAsync(id);
+        }
+        public async Task<T> AddAsync(T entity)
+        {
+            _dbContext.Set<T>().Add(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
-        public Task DeleteAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
-
-        public Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> ordderBy = null, string includeString = null, bool disableTracking = true)
+        public async Task DeleteAsync(T entity)
         {
-            throw new NotImplementedException();
-        }
-
-       
-        public Task<T> GetByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(T entity)
-        {
-            throw new NotImplementedException();
+            _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
